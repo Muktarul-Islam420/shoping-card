@@ -30,7 +30,7 @@
                                     <button id="plus-btn" class="btn btn-default"><i class="fas fa-plus"></i></button>
                                 </div>
                                 <h5>$<span id="price">1219</span></h5>
-                                <img src="images/remove.png" alt="" id="Remove" class="remove-item">
+                                <img onclick="removeItems('RemoveItem')" src="images/remove.png" alt="" id="Remove" class="remove-item">
                             </div>
                         </div>
                     </div>
@@ -49,7 +49,7 @@
 
                                 </div>
                                 <h5>$<span id="iPhonePrice">59</span></h5>
-                                <img src="images/remove.png" alt=" " id="iPhoneRemove" class="remove-item">
+                                <img onclick="removeItems('SecondCardItem')" src="images/remove.png" alt=" " id="iPhoneRemove" class="remove-item">
                             </div>
                         </div>
                     </div>
@@ -64,9 +64,9 @@
                             </div>
 
                             <div class="col-md-4 status">
-                                <h5>$<span id="currentPrice">1,278</span></h5>
-                                <h5>$0</h5>
-                                <h5>$1,278</h5>
+                                <h5>$<span id="TotalPriceCount">1,278</span></h5>
+                                <h5 id="tex-amount">$0</h5>
+                                <h5 id="final-amount">$1,278</h5>
                             </div>
                         </div>
                     </div>
@@ -127,6 +127,9 @@
             const Count = totalNumber * 1219;
             document.getElementById("price").innerText = Count;
 
+            calculateTotal();
+
+
 
         }
 
@@ -145,9 +148,24 @@
             const Count = totalNumber * 59;
             document.getElementById("iPhonePrice").innerText = Count;
 
-
+            calculateTotal();
         }
 
+        function calculateTotal() {
+            const phoneInput = document.getElementById("quantity");
+            const phoneCount = parseInt(phoneInput.value);
+
+            const caseInput = document.getElementById("iPhoneQuantity");
+            const caseCount = parseInt(caseInput.value);
+
+            const totalCount = phoneCount * 1219 + caseCount * 59;
+            document.getElementById("TotalPriceCount").innerText = totalCount;
+            const tex = Math.round(totalCount * 0.1);
+            document.getElementById("tex-amount").innerText = "$" + tex;
+
+            const finalAmount = totalCount + tex;
+            document.getElementById("final-amount").innerText = "$" + finalAmount;
+        }
 
         /**
 
@@ -250,6 +268,7 @@
         function removeItems(id) {
             const removeArea = document.getElementById(id);
             removeArea.style.display = "none";
+            return removeArea;
         }
 
         function updateSubtotal(id, depositNumber) {
