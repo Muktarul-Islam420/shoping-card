@@ -71,7 +71,7 @@
                         </div>
                     </div>
                     <div class="col-md-12 pt-4 pb-4">
-                        <button type="button" class="btn btn-success check-out">Check Out</button>
+                        <button onclick="feedbackText();" id="buy button" type="button" class="btn btn-success check-out">Check Out</button>
                     </div>
                 </div>
             </div>
@@ -166,6 +166,12 @@
             const finalAmount = totalCount + tex;
             document.getElementById("final-amount").innerText = "$" + finalAmount;
         }
+
+        function feedbackText() {
+            const feedback = document.write("Hey!go to shope for bye this products.I just had fun with you");
+            document.getElementById("buy button").innerText = feedback;
+        }
+
 
         /**
 
@@ -263,6 +269,7 @@
                     const currentPrice = parseFloat(Prices);
                     const totalPrice = totalNumber * 59;
                     document.getElementById(id).innerText = totalPrice;
+
                 }
         */
         function removeItems(id) {
